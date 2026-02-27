@@ -1,0 +1,79 @@
+﻿
+> vite_react_shadcn_ts@0.0.0 lint
+> eslint .
+
+
+C:\Users\MK MUGHAL\OneDrive\Desktop\jobmitra-premium-launch\src\components\dashboard\AdminDashboard.tsx
+   74:25  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  211:58  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  212:75  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\MK MUGHAL\OneDrive\Desktop\jobmitra-premium-launch\src\components\dashboard\ApplyModal.tsx
+  64:23  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\MK MUGHAL\OneDrive\Desktop\jobmitra-premium-launch\src\components\dashboard\RecruiterDashboard.tsx
+   92:19  error    Unexpected any. Specify a different type                                                                      @typescript-eslint/no-explicit-any
+  101:6   warning  React Hook useEffect has a missing dependency: 'fetchJobs'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  138:21  error    Unexpected any. Specify a different type                                                                      @typescript-eslint/no-explicit-any
+  152:19  error    Unexpected any. Specify a different type                                                                      @typescript-eslint/no-explicit-any
+
+C:\Users\MK MUGHAL\OneDrive\Desktop\jobmitra-premium-launch\src\components\dashboard\UserDashboard.tsx
+   54:50  error    Unexpected any. Specify a different type                                                                               @typescript-eslint/no-explicit-any
+   55:46  error    Unexpected any. Specify a different type                                                                               @typescript-eslint/no-explicit-any
+   99:43  error    Unexpected any. Specify a different type                                                                               @typescript-eslint/no-explicit-any
+  100:39  error    Unexpected any. Specify a different type                                                                               @typescript-eslint/no-explicit-any
+  120:6   warning  React Hook useEffect has a missing dependency: 'fetchDashboardData'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  157:19  error    Unexpected any. Specify a different type                                                                               @typescript-eslint/no-explicit-any
+  194:19  error    Unexpected any. Specify a different type                                                                               @typescript-eslint/no-explicit-any
+
+C:\Users\MK MUGHAL\OneDrive\Desktop\jobmitra-premium-launch\src\components\ui\badge.tsx
+  31:17  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+
+C:\Users\MK MUGHAL\OneDrive\Desktop\jobmitra-premium-launch\src\components\ui\button.tsx
+  47:18  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+
+C:\Users\MK MUGHAL\OneDrive\Desktop\jobmitra-premium-launch\src\components\ui\command.tsx
+  24:11  error  An interface declaring no members is equivalent to its supertype  @typescript-eslint/no-empty-object-type
+
+C:\Users\MK MUGHAL\OneDrive\Desktop\jobmitra-premium-launch\src\components\ui\file-upload.tsx
+  27:5  error  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+
+C:\Users\MK MUGHAL\OneDrive\Desktop\jobmitra-premium-launch\src\components\ui\form.tsx
+  129:10  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+
+C:\Users\MK MUGHAL\OneDrive\Desktop\jobmitra-premium-launch\src\components\ui\navigation-menu.tsx
+  111:3  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+
+C:\Users\MK MUGHAL\OneDrive\Desktop\jobmitra-premium-launch\src\components\ui\sidebar.tsx
+  636:3  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+
+C:\Users\MK MUGHAL\OneDrive\Desktop\jobmitra-premium-launch\src\components\ui\sonner.tsx
+  27:19  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+
+C:\Users\MK MUGHAL\OneDrive\Desktop\jobmitra-premium-launch\src\components\ui\textarea.tsx
+  5:18  error  An interface declaring no members is equivalent to its supertype  @typescript-eslint/no-empty-object-type
+
+C:\Users\MK MUGHAL\OneDrive\Desktop\jobmitra-premium-launch\src\components\ui\toggle.tsx
+  37:18  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+
+C:\Users\MK MUGHAL\OneDrive\Desktop\jobmitra-premium-launch\src\contexts\AuthContext.tsx
+  23:14  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+  60:21  error    Unexpected any. Specify a different type                                                                                        @typescript-eslint/no-explicit-any
+  78:21  error    Unexpected any. Specify a different type                                                                                        @typescript-eslint/no-explicit-any
+
+C:\Users\MK MUGHAL\OneDrive\Desktop\jobmitra-premium-launch\src\lib\api.ts
+  35:19  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\MK MUGHAL\OneDrive\Desktop\jobmitra-premium-launch\src\pages\Jobs.tsx
+  33:44  error    Unexpected any. Specify a different type                                                                             @typescript-eslint/no-explicit-any
+  75:41  error    Unexpected any. Specify a different type                                                                             @typescript-eslint/no-explicit-any
+  98:6   warning  React Hook useEffect has a missing dependency: 'fetchSavedStatus'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Users\MK MUGHAL\OneDrive\Desktop\jobmitra-premium-launch\src\pages\SeekerDashboard.tsx
+  52:6  warning  React Hook useEffect has a missing dependency: 'fetchDashboardData'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Users\MK MUGHAL\OneDrive\Desktop\jobmitra-premium-launch\tailwind.config.ts
+  91:13  error  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+
+Γ£û 34 problems (22 errors, 12 warnings)
+
