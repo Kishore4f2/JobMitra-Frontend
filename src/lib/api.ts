@@ -1,4 +1,15 @@
-const API_BASE_URL = import.meta.env.VITE_API_URL || "/api";
+const getApiBaseUrl = () => {
+  const envUrl = import.meta.env.VITE_API_URL;
+  if (!envUrl) return "/api";
+
+  // Remove trailing slash if present
+  const base = envUrl.endsWith('/') ? envUrl.slice(0, -1) : envUrl;
+
+  // Ensure it ends with /api if it's an external URL
+  return base.endsWith('/api') ? base : `${base}/api`;
+};
+
+const API_BASE_URL = getApiBaseUrl();
 
 export async function apiFetch(endpoint: string, options: RequestInit = {}) {
   const url = `${API_BASE_URL}${endpoint}`;
