@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Briefcase, Users, CheckCircle, XCircle, FileText, User,
-  ChevronDown, Eye, X, Loader2, Plus, TrendingUp, Clock
+  ChevronDown, X, Loader2, Plus, TrendingUp, Clock
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { toast } from "@/hooks/use-toast";
@@ -260,17 +260,6 @@ const RecruiterDashboardComponent = () => {
                       <Badge variant="outline" className={`text-[9px] uppercase ${app.status === 'hr_round' ? 'border-emerald-500/50 text-emerald-400' : app.status === 'rejected' ? 'border-red-500/50 text-red-400' : 'border-amber-500/50 text-amber-400'}`}>
                         {app.status === 'hr_round' ? 'Shortlisted' : app.status}
                       </Badge>
-                    </div>
-
-                    <div className="flex gap-2">
-                      <a
-                        href={`/api/applications/resume/${app.resumeFile}`}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="flex-1 flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg border border-blue-500/20 bg-blue-500/5 text-blue-400 text-xs hover:bg-blue-500/10 transition-all"
-                      >
-                        <Eye className="w-3.5 h-3.5" /> View Resume
-                      </a>
                     </div>
 
                     {
