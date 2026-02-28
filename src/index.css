@@ -245,9 +245,168 @@ html {
   position: relative;
   box-shadow: inset 0 0 3px hsl(var(--background));
   overflow: hidden;
-  background-image: linear-gradient(135deg, hsl(var(--primary) / 0.1) 0%, hsl(var(--accent) / 0.08) 50%, hsl(var(--background)) 100%);
 }
 
+/* ── Welcome Screen ── */
+.mb-welcome-screen {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg,
+      hsl(222, 47%, 6%) 0%,
+      hsl(222, 40%, 9%) 50%,
+      hsl(230, 45%, 8%) 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: space-between;
+  overflow: hidden;
+  z-index: 0;
+}
+
+/* Subtle dot-grid overlay */
+.mb-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle, hsl(var(--primary) / 0.12) 1px, transparent 1px);
+  background-size: 10px 10px;
+  z-index: 0;
+}
+
+/* Central glow orb */
+.mb-glow-orb {
+  position: absolute;
+  top: 22%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 50px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, hsl(var(--primary) / 0.25) 0%, hsl(var(--accent) / 0.12) 50%, transparent 80%);
+  filter: blur(12px);
+  animation: mbOrbPulse 3s ease-in-out infinite;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Content stack */
+.mb-welcome-content {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  padding: 8px 6px 4px;
+}
+
+.mb-welcome-badge {
+  font-size: 3.8px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: hsl(var(--primary));
+  background: hsl(var(--primary) / 0.1);
+  border: 1px solid hsl(var(--primary) / 0.3);
+  border-radius: 20px;
+  padding: 1px 5px;
+  text-transform: uppercase;
+  animation: mbBadgeFade 2.5s ease-in-out infinite alternate;
+}
+
+.mb-welcome-title {
+  font-size: 5.5px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  color: hsl(var(--muted-foreground));
+  letter-spacing: 0.2px;
+  line-height: 1;
+}
+
+.mb-welcome-brand {
+  font-size: 15px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  line-height: 1;
+  background: linear-gradient(135deg,
+      hsl(217, 91%, 75%) 0%,
+      hsl(217, 91%, 60%) 40%,
+      hsl(250, 80%, 70%) 80%,
+      hsl(280, 70%, 65%) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: none;
+  animation: mbBrandShimmer 4s ease-in-out infinite;
+}
+
+.mb-welcome-tagline {
+  font-size: 5px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 500;
+  color: hsl(var(--foreground) / 0.7);
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
+.mb-welcome-divider {
+  width: 30px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, hsl(var(--primary) / 0.6), transparent);
+  margin: 1px 0;
+}
+
+.mb-welcome-sub {
+  font-size: 4px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  color: hsl(var(--muted-foreground));
+  letter-spacing: 0.3px;
+}
+
+/* Bottom status bar */
+.mb-welcome-bar {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: hsl(var(--primary) / 0.08);
+  border-top: 1px solid hsl(var(--primary) / 0.18);
+  padding: 2.5px 7px;
+}
+
+.mb-bar-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: hsl(var(--primary));
+  box-shadow: 0 0 5px hsl(var(--primary));
+  animation: mbDotPulse 2s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+.mb-bar-text {
+  font-size: 4px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  color: hsl(var(--muted-foreground));
+  flex: 1;
+  letter-spacing: 0.2px;
+}
+
+.mb-bar-status {
+  font-size: 3.5px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  color: #4ade80;
+  animation: mbLivePulse 1.8s ease-in-out infinite;
+}
+
+/* Shade overlay on top of everything (z:2) */
 .macbook-display-shade {
   position: absolute;
   left: 0;
@@ -258,6 +417,70 @@ html {
   animation: mb-screen-shade 7s ease infinite;
   background-size: 350px 230px;
   background-position: 0 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+@keyframes mbOrbPulse {
+
+  0%,
+  100% {
+    opacity: 0.7;
+    transform: translateX(-50%) scale(1);
+  }
+
+  50% {
+    opacity: 1;
+    transform: translateX(-50%) scale(1.15);
+  }
+}
+
+@keyframes mbBadgeFade {
+  0% {
+    opacity: 0.7;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes mbBrandShimmer {
+
+  0%,
+  100% {
+    filter: brightness(1);
+  }
+
+  50% {
+    filter: brightness(1.2);
+  }
+}
+
+@keyframes mbDotPulse {
+
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.5;
+    transform: scale(0.8);
+  }
+}
+
+@keyframes mbLivePulse {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.4;
+  }
 }
 
 .macbook-face-one span {
