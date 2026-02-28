@@ -291,127 +291,132 @@ const RecruiterDashboardComponent = () => {
       {/* Post Job Modal */}
       <AnimatePresence>
         {showForm && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md px-4">
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md px-4 py-4">
             <motion.div
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              className="w-full max-w-xl rounded-2xl border border-blue-500/20 bg-[#0b1220] p-8 shadow-2xl relative"
+              className="w-full max-w-xl rounded-2xl border border-blue-500/20 bg-[#0b1220] shadow-2xl relative flex flex-col max-h-[90vh]"
             >
-              <button onClick={() => setShowForm(false)} className="absolute top-4 right-4 text-zinc-500 hover:text-white transition-colors">
-                <X className="w-6 h-6" />
-              </button>
+              {/* Sticky header */}
+              <div className="flex items-center justify-between px-6 sm:px-8 pt-6 pb-4 border-b border-blue-500/10 flex-shrink-0">
+                <h2 className="font-display text-xl sm:text-2xl font-bold text-white flex items-center gap-3">
+                  <Plus className="w-5 h-5 sm:w-6 sm:h-6 text-blue-400" /> Create Job Listing
+                </h2>
+                <button onClick={() => setShowForm(false)} className="text-zinc-500 hover:text-white transition-colors ml-4">
+                  <X className="w-6 h-6" />
+                </button>
+              </div>
 
-              <h2 className="font-display text-2xl font-bold text-white mb-6 flex items-center gap-3">
-                <Plus className="w-6 h-6 text-blue-400" /> Create Job Listing
-              </h2>
+              {/* Scrollable form body */}
+              <div className="overflow-y-auto flex-1 px-6 sm:px-8 py-6">
+                <form onSubmit={handlePostJob} className="space-y-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <label className="text-xs font-semibold text-zinc-400 mb-1.5 block uppercase tracking-wider">Job Title</label>
+                      <input
+                        value={jobForm.title}
+                        onChange={(e) => setJobForm(f => ({ ...f, title: e.target.value }))}
+                        placeholder="e.g. Senior Backend Dev"
+                        className="w-full px-4 py-3 rounded-xl bg-zinc-950 border border-blue-500/20 text-white focus:ring-2 focus:ring-blue-500/40 outline-none text-sm"
+                      />
+                    </div>
+                    <div>
+                      <label className="text-xs font-semibold text-zinc-400 mb-1.5 block uppercase tracking-wider">Company</label>
+                      <input
+                        value={jobForm.company}
+                        onChange={(e) => setJobForm(f => ({ ...f, company: e.target.value }))}
+                        placeholder="e.g. Mitra Tech"
+                        className="w-full px-4 py-3 rounded-xl bg-zinc-950 border border-blue-500/20 text-white focus:ring-2 focus:ring-blue-500/40 outline-none text-sm"
+                      />
+                    </div>
+                  </div>
 
-              <form onSubmit={handlePostJob} className="space-y-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <label className="text-xs font-semibold text-zinc-400 mb-1.5 block uppercase tracking-wider">Package (LPA)</label>
+                      <input
+                        value={jobForm.salary}
+                        onChange={(e) => setJobForm(f => ({ ...f, salary: e.target.value }))}
+                        placeholder="e.g. 12-18 LPA"
+                        className="w-full px-4 py-3 rounded-xl bg-zinc-950 border border-blue-500/20 text-white focus:ring-2 focus:ring-blue-500/40 outline-none text-sm"
+                      />
+                    </div>
+                    <div>
+                      <label className="text-xs font-semibold text-zinc-400 mb-1.5 block uppercase tracking-wider">Location</label>
+                      <input
+                        value={jobForm.location}
+                        onChange={(e) => setJobForm(f => ({ ...f, location: e.target.value }))}
+                        placeholder="e.g. Mumbai, Remote"
+                        className="w-full px-4 py-3 rounded-xl bg-zinc-950 border border-blue-500/20 text-white focus:ring-2 focus:ring-blue-500/40 outline-none text-sm"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <label className="text-xs font-semibold text-zinc-400 mb-1.5 block uppercase tracking-wider">Job Type</label>
+                      <select
+                        value={jobForm.type}
+                        onChange={(e) => setJobForm(f => ({ ...f, type: e.target.value }))}
+                        className="w-full px-4 py-3 rounded-xl bg-zinc-950 border border-blue-500/20 text-white outline-none text-sm appearance-none"
+                      >
+                        <option value="Full-time">Full-time</option>
+                        <option value="Part-time">Part-time</option>
+                        <option value="Remote">Remote</option>
+                        <option value="Contract">Contract</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label className="text-xs font-semibold text-zinc-400 mb-1.5 block uppercase tracking-wider">Experience</label>
+                      <select
+                        value={jobForm.experience}
+                        onChange={(e) => setJobForm(f => ({ ...f, experience: e.target.value }))}
+                        className="w-full px-4 py-3 rounded-xl bg-zinc-950 border border-blue-500/20 text-white outline-none text-sm appearance-none"
+                      >
+                        <option value="Fresher">Fresher</option>
+                        <option value="Experienced">Experienced</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label className="text-xs font-semibold text-zinc-400 mb-1.5 block uppercase tracking-wider">Application Deadline</label>
+                      <input
+                        type="date"
+                        value={jobForm.deadline}
+                        onChange={(e) => setJobForm(f => ({ ...f, deadline: e.target.value }))}
+                        className="w-full px-4 py-3 rounded-xl bg-zinc-950 border border-blue-500/20 text-white focus:ring-2 focus:ring-blue-500/40 outline-none text-sm"
+                      />
+                    </div>
+                  </div>
+
                   <div>
-                    <label className="text-xs font-semibold text-zinc-400 mb-1.5 block uppercase tracking-wider">Job Title</label>
+                    <label className="text-xs font-semibold text-zinc-400 mb-1.5 block uppercase tracking-wider">Required Skills (comma separated)</label>
                     <input
-                      value={jobForm.title}
-                      onChange={(e) => setJobForm(f => ({ ...f, title: e.target.value }))}
-                      placeholder="e.g. Senior Backend Dev"
+                      value={jobForm.skills}
+                      onChange={(e) => setJobForm(f => ({ ...f, skills: e.target.value }))}
+                      placeholder="e.g. React, TypeScript, Node.js"
                       className="w-full px-4 py-3 rounded-xl bg-zinc-950 border border-blue-500/20 text-white focus:ring-2 focus:ring-blue-500/40 outline-none text-sm"
                     />
                   </div>
+
                   <div>
-                    <label className="text-xs font-semibold text-zinc-400 mb-1.5 block uppercase tracking-wider">Company</label>
-                    <input
-                      value={jobForm.company}
-                      onChange={(e) => setJobForm(f => ({ ...f, company: e.target.value }))}
-                      placeholder="e.g. Mitra Tech"
-                      className="w-full px-4 py-3 rounded-xl bg-zinc-950 border border-blue-500/20 text-white focus:ring-2 focus:ring-blue-500/40 outline-none text-sm"
+                    <label className="text-xs font-semibold text-zinc-400 mb-1.5 block uppercase tracking-wider">Description</label>
+                    <textarea
+                      value={jobForm.description}
+                      onChange={(e) => setJobForm(f => ({ ...f, description: e.target.value }))}
+                      placeholder="Briefly describe the role..."
+                      rows={3}
+                      className="w-full px-4 py-3 rounded-xl bg-zinc-950 border border-blue-500/20 text-white focus:ring-2 focus:ring-blue-500/40 outline-none text-sm resize-none"
                     />
                   </div>
-                </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="text-xs font-semibold text-zinc-400 mb-1.5 block uppercase tracking-wider">Package (LPA)</label>
-                    <input
-                      value={jobForm.salary}
-                      onChange={(e) => setJobForm(f => ({ ...f, salary: e.target.value }))}
-                      placeholder="e.g. 12-18 LPA"
-                      className="w-full px-4 py-3 rounded-xl bg-zinc-950 border border-blue-500/20 text-white focus:ring-2 focus:ring-blue-500/40 outline-none text-sm"
-                    />
+                  <div className="pt-4">
+                    <button type="submit" className="w-full py-4 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold transition-all shadow-xl shadow-blue-900/40">
+                      Publish Position
+                    </button>
                   </div>
-                  <div>
-                    <label className="text-xs font-semibold text-zinc-400 mb-1.5 block uppercase tracking-wider">Location</label>
-                    <input
-                      value={jobForm.location}
-                      onChange={(e) => setJobForm(f => ({ ...f, location: e.target.value }))}
-                      placeholder="e.g. Mumbai, Remote"
-                      className="w-full px-4 py-3 rounded-xl bg-zinc-950 border border-blue-500/20 text-white focus:ring-2 focus:ring-blue-500/40 outline-none text-sm"
-                    />
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="text-xs font-semibold text-zinc-400 mb-1.5 block uppercase tracking-wider">Job Type</label>
-                    <select
-                      value={jobForm.type}
-                      onChange={(e) => setJobForm(f => ({ ...f, type: e.target.value }))}
-                      className="w-full px-4 py-3 rounded-xl bg-zinc-950 border border-blue-500/20 text-white outline-none text-sm appearance-none"
-                    >
-                      <option value="Full-time">Full-time</option>
-                      <option value="Part-time">Part-time</option>
-                      <option value="Remote">Remote</option>
-                      <option value="Contract">Contract</option>
-                    </select>
-                  </div>
-                  <div>
-                    <label className="text-xs font-semibold text-zinc-400 mb-1.5 block uppercase tracking-wider">Experience</label>
-                    <select
-                      value={jobForm.experience}
-                      onChange={(e) => setJobForm(f => ({ ...f, experience: e.target.value }))}
-                      className="w-full px-4 py-3 rounded-xl bg-zinc-950 border border-blue-500/20 text-white outline-none text-sm appearance-none"
-                    >
-                      <option value="Fresher">Fresher</option>
-                      <option value="Experienced">Experienced</option>
-                    </select>
-                  </div>
-                  <div>
-                    <label className="text-xs font-semibold text-zinc-400 mb-1.5 block uppercase tracking-wider">Application Deadline</label>
-                    <input
-                      type="date"
-                      value={jobForm.deadline}
-                      onChange={(e) => setJobForm(f => ({ ...f, deadline: e.target.value }))}
-                      className="w-full px-4 py-3 rounded-xl bg-zinc-950 border border-blue-500/20 text-white focus:ring-2 focus:ring-blue-500/40 outline-none text-sm"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label className="text-xs font-semibold text-zinc-400 mb-1.5 block uppercase tracking-wider">Required Skills (comma separated)</label>
-                  <input
-                    value={jobForm.skills}
-                    onChange={(e) => setJobForm(f => ({ ...f, skills: e.target.value }))}
-                    placeholder="e.g. React, TypeScript, Node.js"
-                    className="w-full px-4 py-3 rounded-xl bg-zinc-950 border border-blue-500/20 text-white focus:ring-2 focus:ring-blue-500/40 outline-none text-sm"
-                  />
-                </div>
-
-                <div>
-                  <label className="text-xs font-semibold text-zinc-400 mb-1.5 block uppercase tracking-wider">Description</label>
-                  <textarea
-                    value={jobForm.description}
-                    onChange={(e) => setJobForm(f => ({ ...f, description: e.target.value }))}
-                    placeholder="Briefly describe the role..."
-                    rows={3}
-                    className="w-full px-4 py-3 rounded-xl bg-zinc-950 border border-blue-500/20 text-white focus:ring-2 focus:ring-blue-500/40 outline-none text-sm resize-none"
-                  />
-                </div>
-
-                <div className="pt-4">
-                  <button type="submit" className="w-full py-4 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold transition-all shadow-xl shadow-blue-900/40">
-                    Publish Position
-                  </button>
-                </div>
-              </form>
+                </form>
+              </div>
             </motion.div>
           </div>
         )}

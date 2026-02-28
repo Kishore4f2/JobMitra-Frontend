@@ -5,9 +5,9 @@ const Footer = () => {
   return (
     <footer className="border-t border-border/50 py-16 px-6">
       <div className="container mx-auto max-w-7xl">
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-10 mb-12">
           {/* Brand */}
-          <div className="sm:col-span-2 lg:col-span-1">
+          <div className="col-span-2 lg:col-span-1">
             <div className="flex items-center gap-2 mb-4">
               <img src={jobmitraLogo} alt="JobMitra logo" className="h-10 w-10 object-contain" />
               <img src={jobmitraText} alt="JobMitra" className="h-10 object-contain" />
