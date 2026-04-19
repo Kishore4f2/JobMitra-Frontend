@@ -13,6 +13,7 @@ import RecruiterDashboardPage from "./pages/RecruiterDashboardPage";
 import AdminDashboardPage from "./pages/AdminDashboardPage";
 import ResetPassword from "./pages/ResetPassword";
 import NotFound from "./pages/NotFound";
+import OAuth2RedirectHandler from "./pages/OAuth2RedirectHandler";
 
 const queryClient = new QueryClient();
 
@@ -32,6 +33,7 @@ const AppRoutes = () => {
       <Route path="/dashboard/admin" element={<AdminDashboardPage />} />
       <Route path="/admin" element={<Navigate to="/dashboard/admin" replace />} />
       <Route path="/reset-password" element={<ResetPassword />} />
+      <Route path="/oauth2/redirect" element={<OAuth2RedirectHandler />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

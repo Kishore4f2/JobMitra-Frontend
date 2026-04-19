@@ -91,22 +91,39 @@ const JobMitraAuth = () => {
     </div>
   );
 
-  const SocialButtons = () => (
-    <div className="mt-5">
-      <p className="text-zinc-500 text-xs text-center mb-3">Continue with AI-connected accounts</p>
-      <div className="flex justify-center gap-3">
-        {[Chrome, Github, Linkedin].map((Icon, i) => (
-          <button
-            key={i}
-            type="button"
-            className="inline-flex p-2.5 border-2 border-blue-500/20 rounded-lg text-zinc-400 hover:text-blue-400 hover:border-blue-500/40 hover:shadow-[0_0_12px_rgba(59,130,246,0.3)] transition-all duration-300 hover:scale-110"
-          >
-            <Icon className="w-5 h-5" />
-          </button>
-        ))}
+  const SocialButtons = () => {
+    const handleOAuth = (provider: string) => {
+      const envUrl = import.meta.env.VITE_API_URL || "http://localhost:8080";
+      const baseUrl = envUrl.endsWith('/api') 
+        ? envUrl.slice(0, -4) 
+        : envUrl.endsWith('/') 
+          ? envUrl.slice(0, -1) 
+          : envUrl;
+      
+      window.location.href = `${baseUrl}/oauth2/authorization/${provider}`;
+    };
+
+    return (
+      <div className="mt-5">
+        <p className="text-zinc-500 text-xs text-center mb-3">Continue with AI-connected accounts</p>
+        <div className="flex justify-center gap-3">
+          {[
+            { Icon: Chrome, name: "google" },
+            { Icon: Github, name: "github" }
+          ].map(({ Icon, name }) => (
+            <button
+              key={name}
+              type="button"
+              onClick={() => handleOAuth(name)}
+              className="inline-flex p-2.5 border-2 border-blue-500/20 rounded-lg text-zinc-400 hover:text-blue-400 hover:border-blue-500/40 hover:shadow-[0_0_12px_rgba(59,130,246,0.3)] transition-all duration-300 hover:scale-110"
+            >
+              <Icon className="w-5 h-5" />
+            </button>
+          ))}
+        </div>
       </div>
-    </div>
-  );
+    );
+  };
 
   return (
     <div className="min-h-screen bg-[#020617] flex items-center justify-center px-4 relative overflow-hidden">

@@ -14,6 +14,7 @@ interface AuthContextType {
   user: User | null;
   login: (email: string, password: string, role: string) => Promise<User>;
   register: (name: string, email: string, password: string, role: string) => Promise<void>;
+  handleOAuthLogin: (userData: User) => void;
   logout: () => void;
   isLoading: boolean;
 }
@@ -91,8 +92,14 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     toast({ title: "Logged Out", description: "See you again soon!" });
   };
 
+  const handleOAuthLogin = (userData: User) => {
+    setUser(userData);
+    localStorage.setItem("jobmitra_user", JSON.stringify(userData));
+    toast({ title: "Login Successful", description: `Welcome back, ${userData.name}!` });
+  };
+
   return (
-    <AuthContext.Provider value={{ user, login, register, logout, isLoading }}>
+    <AuthContext.Provider value={{ user, login, register, handleOAuthLogin, logout, isLoading }}>
       {children}
     </AuthContext.Provider>
   );
