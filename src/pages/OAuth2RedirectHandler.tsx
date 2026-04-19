@@ -37,7 +37,13 @@ const OAuth2RedirectHandler = () => {
         role: decodeURIComponent(role),
         token
       });
-      navigate("/dashboard/user"); // because OAuth2 is for seeker only
+
+      // Retrieve where they came from before starting OAuth
+      const returnPath = localStorage.getItem("oauth_return_to") || "/dashboard/user";
+      localStorage.removeItem("oauth_return_to");
+      
+      // Navigate exactly to the same page or their designated path
+      navigate(returnPath, { replace: true });
     } else {
       toast({
         title: "Login Failed",
@@ -50,7 +56,10 @@ const OAuth2RedirectHandler = () => {
 
   return (
     <div className="min-h-screen bg-[#020617] flex items-center justify-center">
-      <div className="text-white">Authenticating... Please wait.</div>
+      <div className="flex flex-col items-center gap-4 text-white">
+        <div className="w-8 h-8 rounded-full border-4 border-blue-500 border-t-transparent animate-spin" />
+        <p className="font-medium text-lg">Finalizing Login...</p>
+      </div>
     </div>
   );
 };

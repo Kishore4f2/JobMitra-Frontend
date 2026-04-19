@@ -93,6 +93,10 @@ const JobMitraAuth = () => {
 
   const SocialButtons = () => {
     const handleOAuth = (provider: string) => {
+      // Remember where the user was before they clicked login so we can send them back there
+      const returnTo = location.state?.from || "/dashboard/user";
+      localStorage.setItem("oauth_return_to", returnTo);
+
       const envUrl = import.meta.env.VITE_API_URL || "http://localhost:8080";
       const baseUrl = envUrl.endsWith('/api') 
         ? envUrl.slice(0, -4) 
